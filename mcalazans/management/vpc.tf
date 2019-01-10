@@ -1,8 +1,4 @@
-resource "aws_security_group" {
-    
-}
-
-resource "aws_instance" "example" {
-    ami           = "ami-009d6802948d06e52"
-    instance_type = "t2.micro"
+resource "aws_instance" "worker" {
+  ami           = "${var.worker_AMI}"
+  instance_type = "${var.worker_type}"
 }
