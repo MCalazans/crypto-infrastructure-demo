@@ -9,8 +9,24 @@ variable "worker_type" {
 	default = "t2.nano"
 }
 
-# Worker - Service specs
-variable "server_port" {
-  description = "The port the server will use for HTTP request"
+# EC2 Worker - Service specs
+variable "worker_ec2_instance_port" {
+  description = "The port that the server will use for HTTP request"
   default = 8080
+}
+
+variable "worker_ec2_instance_protocol" {
+  description = "The protocol that this server will work with"
+  default = "http"
+}
+
+# ELB Worker - Listener specs
+variable "worker_elb_port" {
+	description = "The port that the ELB will listen to forward to workers server" 
+	default = 80
+}
+
+variable "worker_elb_protocol" {
+	description = "The protocol that the ELB will work with" 
+	default = "http"
 }
