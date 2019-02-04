@@ -2,12 +2,7 @@
 ### Load Balancers
 ###
 resource "aws_elb" "worker_elb" {
-  name = "mentoria-worker-elb"
-  availability_zones = [
-    "${data.aws_availability_zones.all.names[0]}",
-    "${data.aws_availability_zones.all.names[1]}",
-    "${data.aws_availability_zones.all.names[2]}"
-  ]
+  name = "infa-as-code-worker-elb"
   security_groups = [
     "${aws_security_group.worker_elb_sg.id}"
   ]
@@ -28,5 +23,14 @@ resource "aws_elb" "worker_elb" {
     timeout = 3
     interval = 30
     target = "HTTP:${var.worker_ec2_instance_port}/"
-  }  
+  }
+  idle_timeout = 400
+  connection_draining = true
+  connection_draining_timeout = 400
+  cross_zone_load_balancing = true
+  depends_on = [
+    "aws_subnet.public_subnet_0",
+    "aws_subnet.public_subnet_1",
+    "aws_subnet.public_subnet_2"
+  ]
 }
