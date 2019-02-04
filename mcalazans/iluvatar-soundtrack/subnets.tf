@@ -10,8 +10,7 @@ resource "aws_subnet" "private_subnet_0" {
     "aws_vpc.main_vpc"
   ]
   tags {
-    key = "Name"
-    value = "${var.vpc_name}:private-${element(split("-","${data.aws_availability_zones.all.names[0]}"),2)}"
+    Name = "${var.vpc_name}:private-${element(split("-","${data.aws_availability_zones.all.names[0]}"),2)}"
   }
 }
 
@@ -23,8 +22,7 @@ resource "aws_subnet" "private_subnet_1" {
     "aws_vpc.main_vpc"
   ]
   tags {
-    key = "Name"
-    value = "${var.vpc_name}:private-${element(split("-","${data.aws_availability_zones.all.names[1]}"),2)}"
+    Name = "${var.vpc_name}:private-${element(split("-","${data.aws_availability_zones.all.names[1]}"),2)}"
   }
 }
 
@@ -36,8 +34,7 @@ resource "aws_subnet" "private_subnet_2" {
     "aws_vpc.main_vpc"
   ]
   tags {
-    key = "Name"
-    value = "${var.vpc_name}:private-${element(split("-","${data.aws_availability_zones.all.names[2]}"),2)}"
+    Name = "${var.vpc_name}:private-${element(split("-","${data.aws_availability_zones.all.names[2]}"),2)}"
   }
 }
 ### Public
@@ -49,8 +46,7 @@ resource "aws_subnet" "public_subnet_0" {
     "aws_vpc.main_vpc"
   ]
   tags {
-    key = "Name"
-    value = "${var.vpc_name}:private-${element(split("-","${data.aws_availability_zones.all.names[0]}"),2)}"
+    Name = "${var.vpc_name}:public-${element(split("-","${data.aws_availability_zones.all.names[0]}"),2)}"
   }
 }
 
@@ -62,8 +58,7 @@ resource "aws_subnet" "public_subnet_1" {
     "aws_vpc.main_vpc"
   ]
   tags {
-    key = "Name"
-    value = "${var.vpc_name}:private-${element(split("-","${data.aws_availability_zones.all.names[1]}"),2)}"
+    Name = "${var.vpc_name}:public-${element(split("-","${data.aws_availability_zones.all.names[1]}"),2)}"
   }
 }
 
@@ -75,7 +70,6 @@ resource "aws_subnet" "public_subnet_2" {
     "aws_vpc.main_vpc"
   ]
   tags {
-    key = "Name"
-    value = "${var.vpc_name}:private-${element(split("-","${data.aws_availability_zones.all.names[2]}"),2)}"
+    Name = "${var.vpc_name}:public-${element(split("-","${data.aws_availability_zones.all.names[2]}"),2)}"
   }
 }
