@@ -4,7 +4,7 @@
 resource "aws_elb" "worker_elb" {
   name = "infa-as-code-worker-elb"
   security_groups = [
-    "${aws_security_group.worker_elb_sg.id}"
+    "${aws_security_group.worker_elb.id}"
   ]
   subnets = [
     "${aws_subnet.public_subnet_0.id}",

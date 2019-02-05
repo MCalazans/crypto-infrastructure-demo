@@ -1,12 +1,12 @@
 # Default environments specs
 variable "project_name" {
   description = "The name of this project"
-  default = "devops-infa-as-code"
+  default = "middle-earth"
 }
 
 variable "vpc_name" {
   description = "The name of the vpc"
-  default = "DevOps-IASC-main-vpc"
+  default = "middle-earth-vpc"
 }
 
 variable "region" {
