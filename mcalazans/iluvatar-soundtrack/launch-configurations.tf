@@ -2,7 +2,7 @@
 ### Launch Configurations
 ###
 resource "aws_launch_configuration" "worker_lc" {
-  name = "${var.vpc_name}:worker"
+  name = "${var.vpc_name}-worker"
   image_id = "${var.worker_AMI}"
   instance_type = "${var.worker_type}"
   user_data = <<-EOF

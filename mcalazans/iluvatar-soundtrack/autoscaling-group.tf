@@ -10,11 +10,12 @@ resource "aws_autoscaling_group" "worker_asg" {
   ]
   load_balancers = ["${aws_elb.worker_elb.name}"]
   health_check_type = "ELB"
-  min_size = 2
-  max_size = 4
+  desired_capacity = "${var.min_workers}"
+  min_size = "${var.min_workers}"
+  max_size = "${var.max_workers}"
   tag {
     key = "Name"
-    value = "mentoria-worker-asg"
+    value = "${var.vpc_name}:worker"
     propagate_at_launch = true
   }
   depends_on = [

@@ -30,3 +30,14 @@ variable "worker_elb_protocol" {
 	description = "The protocol that the ELB will work with" 
 	default = "http"
 }
+
+# ASG Worker specs
+variable "max_workers" {
+	description = "The maximum number of worker instances" 
+	default = "4"
+}
+
+variable "min_workers" {
+	description = "The minimum number of worker instances" 
+	default = "2"
+}
