@@ -1,12 +1,17 @@
 # Default environments specs
 variable "project_name" {
   description = "The name of this project"
-  default = "middle-earth"
+  default = "iluvatar-creation"
 }
 
 variable "vpc_name" {
   description = "The name of the vpc"
   default = "middle-earth-vpc"
+}
+
+variable "elb-name" {
+  description = "The name of the load balancer, that will apears on DNS name"
+  default = "arda"
 }
 
 variable "region" {

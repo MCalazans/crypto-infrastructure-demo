@@ -2,7 +2,7 @@
 ### Load Balancers
 ###
 resource "aws_elb" "worker_elb" {
-  name = "infa-as-code-worker-elb"
+  name = "${var.elb-name}"
   security_groups = [
     "${aws_security_group.worker_elb.id}"
   ]
