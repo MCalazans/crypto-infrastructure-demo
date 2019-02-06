@@ -10,6 +10,10 @@ echo "** Creating worker user"
 groupadd worker
 useradd -d /home/worker -g worker -m -s /bin/bash worker
 
+echo "*** Setting up \"services\" files"
+mkdir -p /var/mcalazans/services
+mv /tmp/dockerfiles/* /var/mcalazans/services
+
 echo "*** Setting up DOJO"
 mkdir -p /var/mcalazans/dojo/bin/
 mv /tmp/scripts/start-service /var/mcalazans/dojo/bin/start-service

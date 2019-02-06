@@ -7,8 +7,7 @@ resource "aws_launch_configuration" "worker_lc" {
   instance_type = "${var.worker_type}"
   user_data = <<-EOF
               #!/bin/bash
-              echo "Hello world" > index.html
-              nohup busybox httpd -f -p "${var.worker_ec2_instance_port}" &
+              start-service --service shadowfax
               EOF
   security_groups = [
     "${aws_security_group.worker_ec2.id}"

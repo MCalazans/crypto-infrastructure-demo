@@ -30,6 +30,11 @@
 			"destination": "/tmp"
 		},
 		{
+			"type": "file",
+			"source": "../files/dockerfiles",
+			"destination": "/tmp"
+		},
+		{
 			"type": "shell",
 			"execute_command": "{{ .Vars }} sudo -E /bin/sh '{{ .Path }}'",
 			"scripts": [

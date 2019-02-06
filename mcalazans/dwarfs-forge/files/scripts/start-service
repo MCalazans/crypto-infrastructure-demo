@@ -1,0 +1,55 @@
+#!/bin/bash
+set -eu
+
+###########################################################################
+### INIT
+SERVICE=
+
+TXT_RED=`tput setaf 1`
+COLOR_DONE=`tput sgr0`
+
+###########################################################################
+## PARAMETER PARSING
+usage() {
+cat <<USAGE
+Usage: start-service (-s|--service) <serviceName>
+
+Required:
+    -s, --service           service name ${TXT_RED}(Required)${COLOR_DONE}
+USAGE
+}
+
+# Parse options
+while [[ $# -ne 0 ]]
+do
+    case "$1" in
+        -s|--service)
+            SERVICE="${2:-}"
+            shift 2
+            ;;
+        *)
+            echo "ERROR: Unknown option: $1" >&2
+            usage
+            exit 1
+            ;;
+    esac
+done
+
+
+###########################################################################
+### Checking
+
+# Check for missing parameters
+[[ -z ${SERVICE} ]] && {
+    echo "ERROR: Missing required parameter." >&2
+    usage
+    exit 1
+}
+
+[[ ! -d /var/mcalazans/services/${SERVICE} ]] && {
+    echo "ERROR: Service (${SERVICE}) not available." >&2
+    exit 1
+}
+
+cd /var/mcalazans/services/${SERVICE}
+/usr/local/bin/docker-compose -f docker-compose.yml up -d

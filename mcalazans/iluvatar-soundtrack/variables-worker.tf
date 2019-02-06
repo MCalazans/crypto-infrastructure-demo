@@ -1,7 +1,7 @@
 # Worker - Instance EC2 specs
 variable "worker_AMI" {
 	description = "The AMI that will be used as base for workers instances"
-	default = "ami-40d28157"
+	default = "ami-02011f25b575bed30"
 }
 
 variable "worker_type" {
