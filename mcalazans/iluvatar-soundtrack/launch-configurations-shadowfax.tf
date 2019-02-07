@@ -20,6 +20,7 @@ resource "aws_launch_configuration" "worker_shadowfax_lc" {
 
 data "template_file" "user_data_shadowfax" {
   template = <<EOF
+#!/bin/bash
 /var/mcalazans/dojo/bin/start-service --service shadowfax
 EOF
 }

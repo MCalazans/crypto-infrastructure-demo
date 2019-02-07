@@ -20,6 +20,7 @@ resource "aws_launch_configuration" "worker_arod_lc" {
 
 data "template_file" "user_arod_data" {
   template = <<EOF
+#!/bin/bash
 /var/mcalazans/dojo/bin/start-service --service arod
 EOF
 }

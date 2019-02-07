@@ -5,9 +5,6 @@ set -eu
 ### INIT
 SERVICE=
 
-TXT_RED=`tput setaf 1`
-COLOR_DONE=`tput sgr0`
-
 ###########################################################################
 ## PARAMETER PARSING
 usage() {
@@ -15,7 +12,7 @@ cat <<USAGE
 Usage: start-service (-s|--service) <serviceName>
 
 Required:
-    -s, --service           service name ${TXT_RED}(Required)${COLOR_DONE}
+    -s, --service           service name (Required)
 USAGE
 }
 
@@ -50,5 +47,5 @@ done
     echo "ERROR: Service (${SERVICE}) not available." >&2
     exit 1
 }
-
+echo "Starting ${SERVICE}"
 /usr/local/bin/docker-compose -f /var/mcalazans/services/${SERVICE}/docker-compose.yml up -d
