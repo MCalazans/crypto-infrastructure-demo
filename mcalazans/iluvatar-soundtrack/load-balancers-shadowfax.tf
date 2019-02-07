@@ -1,8 +1,8 @@
 ###
 ### Load Balancers
 ###
-resource "aws_elb" "worker_elb" {
-  name = "${var.elb-name}"
+resource "aws_elb" "worker_shadowfax_elb" {
+  name = "${var.elb-name}2"
   security_groups = [
     "${aws_security_group.worker_elb.id}"
   ]

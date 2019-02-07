@@ -1,0 +1,7 @@
+###
+### Key pair
+###
+resource "aws_key_pair" "key_of_barad_dur" {
+  key_name   = "${var.worker_key_name}"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCt4eEthxxqfQtpBGKJYpe39io0sMuOyLT34LGz4+9IfQL2pOH5/eRbdL4ArK30N9NQkyIvUb5lt2Co5W53MiVdc6xAPhfs9a4O88NRDELEYYOKqM90HeUxBtalswyXXeHXVUR7mHANyVm07zCZvM2/Ent7yz7o6iEKdbL6JdLb8XHD6mJC4J78AxTal7VBstoQEah6Ha3Mxw640vTX2M0REjfbr5+XI4V6FMwkQ8EAotpf8bGWcawpeKCkpB+mdcfA2X0mII7P8yHXW7z93xxB/ptbwop4/mZa+5eRAtR5oLs5fl1D/N2xXJv9MSpK75IQuWbRhTunuj7KnKt0G1mCs/eN9kQ0zOCznuKU4ivgSarrWyU+Tx6n1SvYbaMOLy48Fcz6bNwX94/VzmKwqVYMWQgKQ+XeXGfxdqKmLRH4h/HS6XPqt58U5vHjF9OREyiy1DcpgP+Y4kRVr4GipBBTJNSAt5tHvrn4n0l3jNUcg+heZNav3q9z3UGMojeZlEMZSOZo0W4DxH2nXKmxAjEYBZJfIDwmj20u1G9lG549AyOAgVwCnY0htOZKk4F18WW9Cl9xh1pP4VsvWCIw0uYVnZGktOuJrFoLGz1VVdRi49Y2bBtw+OZLL+BGr53vya2FIRIOUnlaJPetT9lqAp5EYXsFA243K7cV/b3qaYlxKQ== mcalazans@mcalazans-desktop"
+}

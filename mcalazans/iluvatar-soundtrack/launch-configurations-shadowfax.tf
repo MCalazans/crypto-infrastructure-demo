@@ -1,0 +1,25 @@
+###
+### Launch Configurations
+###
+resource "aws_launch_configuration" "worker_shadowfax_lc" {
+  name = "${var.vpc_name}-worker-shadowfax"
+  image_id = "${var.worker_AMI}"
+  instance_type = "${var.worker_type}"
+  key_name = "${var.worker_key_name}"
+  user_data_base64 = "${base64encode(data.template_file.user_data_shadowfax.rendered)}"
+  security_groups = [
+    "${aws_security_group.worker_ec2.id}"
+  ]
+  lifecycle {
+    create_before_destroy = true
+  }
+  depends_on = [
+    "aws_key_pair.key_of_barad_dur"
+  ]
+}
+
+data "template_file" "user_data_shadowfax" {
+  template = <<EOF
+/var/mcalazans/dojo/bin/start-service --service shadowfax
+EOF
+}

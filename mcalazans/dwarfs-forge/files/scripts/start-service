@@ -51,5 +51,4 @@ done
     exit 1
 }
 
-cd /var/mcalazans/services/${SERVICE}
-/usr/local/bin/docker-compose -f docker-compose.yml up -d
+/usr/local/bin/docker-compose -f /var/mcalazans/services/${SERVICE}/docker-compose.yml up -d

@@ -9,6 +9,11 @@ variable "worker_type" {
 	default = "t2.nano"
 }
 
+variable "worker_key_name" {
+	description = "The key that will be used to access the instances by SSH"
+	default = "key-of-barad-dur"
+}
+
 # EC2 Worker - Service specs
 variable "worker_ec2_instance_port" {
   description = "The port that the server will use for HTTP request"

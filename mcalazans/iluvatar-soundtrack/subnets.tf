@@ -45,6 +45,7 @@ resource "aws_subnet" "public_subnet_0" {
   vpc_id = "${aws_vpc.main_vpc.id}"
   cidr_block = "${var.public_subnet_0_cidr}"
   availability_zone = "${data.aws_availability_zones.all.names[0]}"
+  map_public_ip_on_launch = true
   depends_on = [
     "aws_vpc.main_vpc",
     "aws_route_table.public-route-table"
@@ -58,6 +59,7 @@ resource "aws_subnet" "public_subnet_1" {
   vpc_id = "${aws_vpc.main_vpc.id}"
   cidr_block = "${var.public_subnet_1_cidr}"
   availability_zone = "${data.aws_availability_zones.all.names[1]}"
+  map_public_ip_on_launch = true
   depends_on = [
     "aws_vpc.main_vpc",
     "aws_route_table.public-route-table"
@@ -71,6 +73,7 @@ resource "aws_subnet" "public_subnet_2" {
   vpc_id = "${aws_vpc.main_vpc.id}"
   cidr_block = "${var.public_subnet_2_cidr}"
   availability_zone = "${data.aws_availability_zones.all.names[2]}"
+  map_public_ip_on_launch = true
   depends_on = [
     "aws_vpc.main_vpc",
     "aws_route_table.public-route-table"
