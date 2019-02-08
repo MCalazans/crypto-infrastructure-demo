@@ -21,8 +21,8 @@ resource "aws_autoscaling_group" "worker_shadowfax_asg" {
     "${aws_lb_target_group.target_group_http_shadowfax.arn}"
   ]
   depends_on = [
-    "aws_subnet.public_subnet_0",
-    "aws_subnet.public_subnet_1",
-    "aws_subnet.public_subnet_2"
+    "aws_subnet.private_subnet_0",
+    "aws_subnet.private_subnet_1",
+    "aws_subnet.private_subnet_2"
   ]
 }
