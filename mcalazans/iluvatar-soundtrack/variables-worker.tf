@@ -1,7 +1,7 @@
 # Worker - Instance EC2 specs
 variable "worker_AMI" {
 	description = "The AMI that will be used as base for workers instances"
-	default = "ami-05657f14bae0acdd1"
+	default = "ami-066252beda7cc324d"
 }
 
 variable "worker_type" {
@@ -43,10 +43,10 @@ variable "worker_elb_protocol" {
 # ASG Worker specs
 variable "max_workers" {
 	description = "The maximum number of worker instances" 
-	default = "4"
+	default = "2"
 }
 
 variable "min_workers" {
 	description = "The minimum number of worker instances" 
-	default = "2"
+	default = "1"
 }
