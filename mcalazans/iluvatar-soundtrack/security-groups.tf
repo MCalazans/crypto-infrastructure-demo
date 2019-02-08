@@ -6,8 +6,8 @@ resource "aws_security_group" "worker_elb" {
   description = "Allow traffic to elb worker"
   vpc_id = "${aws_vpc.main_vpc.id}"
   ingress {
-    from_port = "${var.worker_elb_port}"
-    to_port = "${var.worker_elb_port}"
+    from_port = "${var.arda_port}"
+    to_port = "${var.arda_port}"
     protocol = "tcp"
     cidr_blocks = [
       "0.0.0.0/0"
@@ -22,13 +22,38 @@ resource "aws_security_group" "worker_elb" {
     ]
   }
 }
-resource "aws_security_group" "worker_ec2" {
-  name = "${var.vpc_name}:worker-ec2-sg"
-  description = "Allow traffic to ec2 instances worker"
+
+#Arod Security group
+resource "aws_security_group" "arod_sg" {
+  name = "${var.vpc_name}:arod_sg"
+  description = "Allow traffic to arod worker instances"
   vpc_id = "${aws_vpc.main_vpc.id}"
   ingress {
-    from_port = "${var.worker_ec2_instance_port}"
-    to_port = "${var.worker_ec2_instance_port}"
+    from_port = "${var.arod_port}"
+    to_port = "${var.arod_port}"
+    protocol = "tcp"
+    security_groups = [
+      "${aws_security_group.worker_elb.id}"
+    ]
+  }
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = -1
+    cidr_blocks = [
+      "0.0.0.0/0"
+    ]
+  }
+}
+
+#Shadowfax Security group
+resource "aws_security_group" "shadowfax_sg" {
+  name = "${var.vpc_name}:shadowfax_sg"
+  description = "Allow traffic to shadowfax worker instances"
+  vpc_id = "${aws_vpc.main_vpc.id}"
+  ingress {
+    from_port = "${var.shadowfax_port}"
+    to_port = "${var.shadowfax_port}"
     protocol = "tcp"
     security_groups = [
       "${aws_security_group.worker_elb.id}"

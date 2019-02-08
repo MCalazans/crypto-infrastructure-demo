@@ -15,9 +15,13 @@ variable "worker_key_name" {
 }
 
 # EC2 Worker - Service specs
-variable "worker_ec2_instance_port" {
-  description = "The port that the server will use for HTTP request"
+variable "arod_port" {
+  description = "The port that arod are listening"
   default = 8080
+}
+variable "shadowfax_port" {
+  description = "The port that shadowfax are listening"
+  default = 8081
 }
 
 variable "worker_ec2_instance_protocol" {
@@ -26,7 +30,7 @@ variable "worker_ec2_instance_protocol" {
 }
 
 # ELB Worker - Listener specs
-variable "worker_elb_port" {
+variable "arda_port" {
 	description = "The port that the ELB will listen to forward to workers server" 
 	default = 80
 }

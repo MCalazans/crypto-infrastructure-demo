@@ -8,7 +8,7 @@ resource "aws_launch_configuration" "worker_arod_lc" {
   key_name = "${var.worker_key_name}"
   user_data_base64 = "${base64encode(data.template_file.user_arod_data.rendered)}"
   security_groups = [
-    "${aws_security_group.worker_ec2.id}"
+    "${aws_security_group.arod_sg.id}"
   ]
   lifecycle {
     create_before_destroy = true

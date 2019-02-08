@@ -8,7 +8,6 @@ resource "aws_autoscaling_group" "worker_shadowfax_asg" {
     "${aws_subnet.private_subnet_1.id}",
     "${aws_subnet.private_subnet_2.id}"
   ]
-  load_balancers = ["${aws_elb.worker_shadowfax_elb.name}"]
   health_check_type = "ELB"
   desired_capacity = "${var.min_workers}"
   min_size = "${var.min_workers}"
@@ -18,6 +17,9 @@ resource "aws_autoscaling_group" "worker_shadowfax_asg" {
     value = "${var.vpc_name}:shadowfax"
     propagate_at_launch = true
   }
+  target_group_arns = [
+    "${aws_lb_target_group.target_group_http_shadowfax.arn}"
+  ]
   depends_on = [
     "aws_subnet.public_subnet_0",
     "aws_subnet.public_subnet_1",

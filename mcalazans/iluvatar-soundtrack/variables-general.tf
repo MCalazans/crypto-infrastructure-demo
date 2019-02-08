@@ -9,7 +9,7 @@ variable "vpc_name" {
   default = "middle-earth-vpc"
 }
 
-variable "elb-name" {
+variable "lb-name" {
   description = "The name of the load balancer, that will apears on DNS name"
   default = "arda"
 }

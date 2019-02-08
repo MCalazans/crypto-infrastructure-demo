@@ -4,10 +4,6 @@ provider "aws" {
 
 data "aws_availability_zones" "all" {}
 
-output "arod" {
-  value = "${aws_elb.worker_arod_elb.dns_name}"
-}
-
-output "shadowfax" {
-  value = "${aws_elb.worker_shadowfax_elb.dns_name}"
+output "arda" {
+  value = "${aws_lb.arda-loadbalancer.dns_name}"
 }
