@@ -6,7 +6,7 @@ resource "aws_launch_configuration" "worker_arod_lc" {
   image_id = "${var.worker_AMI}"
   instance_type = "${var.worker_type}"
   key_name = "${var.worker_key_name}"
-  user_data_base64 = "${base64encode(data.template_file.user_arod_data.rendered)}"
+  user_data_base64 = "${base64encode(data.template_file.user_data_arod.rendered)}"
   security_groups = [
     "${aws_security_group.arod_sg.id}"
   ]
@@ -18,7 +18,7 @@ resource "aws_launch_configuration" "worker_arod_lc" {
   ]
 }
 
-data "template_file" "user_arod_data" {
+data "template_file" "user_data_arod" {
   template = <<EOF
 #!/bin/bash
 /var/mcalazans/dojo/bin/start-service --service arod
