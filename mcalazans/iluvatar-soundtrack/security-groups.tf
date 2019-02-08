@@ -1,7 +1,7 @@
 ###
 ### Security Groups
 ###
-resource "aws_security_group" "worker_elb" {
+resource "aws_security_group" "worker-elb" {
   name = "${var.vpc_name}:worker-elb-sg"
   description = "Allow traffic to elb worker"
   vpc_id = "${aws_vpc.main_vpc.id}"
@@ -21,11 +21,14 @@ resource "aws_security_group" "worker_elb" {
       "0.0.0.0/0"
     ]
   }
+  tags {
+    Name = "${var.vpc_name}:worker-elb-sg"
+  }
 }
 
 #Arod Security group
-resource "aws_security_group" "arod_sg" {
-  name = "${var.vpc_name}:arod_sg"
+resource "aws_security_group" "arod-sg" {
+  name = "${var.vpc_name}:arod-sg"
   description = "Allow traffic to arod worker instances"
   vpc_id = "${aws_vpc.main_vpc.id}"
   ingress {
@@ -33,7 +36,7 @@ resource "aws_security_group" "arod_sg" {
     to_port = "${var.arod_port}"
     protocol = "tcp"
     security_groups = [
-      "${aws_security_group.worker_elb.id}"
+      "${aws_security_group.worker-elb.id}"
     ]
   }
   egress {
@@ -44,11 +47,14 @@ resource "aws_security_group" "arod_sg" {
       "0.0.0.0/0"
     ]
   }
+  tags {
+    Name = "${var.vpc_name}:arod-sg"
+  }
 }
 
 #Shadowfax Security group
-resource "aws_security_group" "shadowfax_sg" {
-  name = "${var.vpc_name}:shadowfax_sg"
+resource "aws_security_group" "shadowfax-sg" {
+  name = "${var.vpc_name}:shadowfax-sg"
   description = "Allow traffic to shadowfax worker instances"
   vpc_id = "${aws_vpc.main_vpc.id}"
   ingress {
@@ -56,7 +62,7 @@ resource "aws_security_group" "shadowfax_sg" {
     to_port = "${var.shadowfax_port}"
     protocol = "tcp"
     security_groups = [
-      "${aws_security_group.worker_elb.id}"
+      "${aws_security_group.worker-elb.id}"
     ]
   }
   egress {
@@ -67,11 +73,14 @@ resource "aws_security_group" "shadowfax_sg" {
       "0.0.0.0/0"
     ]
   }
+  tags {
+    Name = "${var.vpc_name}:shadowfax-sg"
+  }
 }
 
 #Bastion Security group
-resource "aws_security_group" "bastion_sg" {
-  name = "${var.vpc_name}:bastion_sg"
+resource "aws_security_group" "bastion-sg" {
+  name = "${var.vpc_name}:bastion-sg"
   description = "Allow traffic to bastion instances"
   vpc_id = "${aws_vpc.main_vpc.id}"
   ingress {
@@ -90,11 +99,14 @@ resource "aws_security_group" "bastion_sg" {
       "0.0.0.0/0"
     ]
   }
+  tags {
+    Name = "${var.vpc_name}:bastion-sg"
+  }
 }
 
 #Bastion client security group - Allow the instance receive ssh conections
-resource "aws_security_group" "bastion_client_sg" {
-  name = "${var.vpc_name}:bastion_client_sg"
+resource "aws_security_group" "bastion-client-sg" {
+  name = "${var.vpc_name}:bastion-client-sg"
   description = "Allow traffic from bastion instances to worker instances"
   vpc_id = "${aws_vpc.main_vpc.id}"
   ingress {
@@ -102,7 +114,7 @@ resource "aws_security_group" "bastion_client_sg" {
     to_port = "${var.bastion_port}"
     protocol = "tcp"
     security_groups = [
-      "${aws_security_group.bastion_sg.id}"
+      "${aws_security_group.bastion-sg.id}"
     ]
   }
   egress {
@@ -112,5 +124,8 @@ resource "aws_security_group" "bastion_client_sg" {
     cidr_blocks = [
       "0.0.0.0/0"
     ]
+  }
+  tags {
+    Name = "${var.vpc_name}:bastion-client-sg"
   }
 }

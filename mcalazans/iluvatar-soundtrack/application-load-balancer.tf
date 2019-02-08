@@ -6,7 +6,7 @@ resource "aws_lb" "arda-loadbalancer" {
   internal = false
   load_balancer_type = "application"
   security_groups = [
-    "${aws_security_group.worker_elb.id}"
+    "${aws_security_group.worker-elb.id}"
   ]
   subnets = [
     "${aws_subnet.public_subnet_0.id}",
